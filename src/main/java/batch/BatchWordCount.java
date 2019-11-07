@@ -1,3 +1,5 @@
+package batch;
+
 import org.apache.flink.api.common.functions.FlatMapFunction;
 import org.apache.flink.api.java.DataSet;
 import org.apache.flink.api.java.ExecutionEnvironment;
@@ -19,7 +21,7 @@ public class BatchWordCount {
         dataSet.writeAsCsv(outFilePath,"\n"," ", FileSystem.WriteMode.OVERWRITE);
 
         executionEnvironment.setParallelism(1);
-        executionEnvironment.execute("BatchWordCount");
+        executionEnvironment.execute("batch.BatchWordCount");
     }
 
     private static class Token implements FlatMapFunction<String, Tuple2<String, Integer>>{
